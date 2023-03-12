@@ -3,7 +3,6 @@ import { AuthService } from 'src/services/auth';
 import { validateBody } from 'src/libs/validator';
 
 // Schemas
-
 import registerSchema from 'src/schemas/register.schema.json';
 import loginSchema from 'src/schemas/login.schema.json';
 

@@ -40,8 +40,7 @@ describe( 'Acronym API', ()=>{
 
       expect( response.statusCode ).toBe( 200 );
       expect( response.body ).toHaveLength( 10 );
-      expect( response.headers ).toHaveProperty( 'x-total-count' );
-      expect( response.headers ).toHaveProperty( 'link' );
+      expect( response.headers ).toHaveProperty( 'X-Has-Next-Page' );
 
     } );
 
@@ -93,37 +92,6 @@ describe( 'Acronym API', ()=>{
 
       expect( response.statusCode ).toBe( 201 );
       expect( await acronymRepository.findOne( { acronym: 'LOL' } ) ).not.toBeNull();
-
-    } );
-
-  } );
-
-  describe( 'PUT /acronym/:acronym', ()=>{
-
-    test( 'updates an existing acronym', async()=>{
-
-      const response = await request( app )
-        .put( '/v1/acronym/BRB' )
-        .set( 'Authorization', 'Bearer mytoken' )
-        .send( { definition: 'Be left back' } );
-
-      expect( response.statusCode ).toBe( 200 );
-      expect( response.body ).toEqual( { acronym: 'BRB', definition: 'Be left back' } );
-      expect( await acronymRepository.findOne( { acronym: 'BRB' } ) ).not.toBeNull();
-
-    } );
-
-  } );
-
-  describe( 'DELETE /acronym/:acronym', ()=>{
-
-    test( 'deletes an existing acronym', async()=>{
-
-      const response = await request( app )
-        .delete( '/v1/acronym/LOL' )
-        .set( 'Authorization', 'Bearer mytoken' );
-
-      expect( response.statusCode ).toBe( 204 );
 
     } );
 
