@@ -9,6 +9,18 @@ CREATE TABLE IF NOT EXISTS "acronyms" (
   PRIMARY KEY ("id")
 );
 
+CREATE TABLE IF NOT EXISTS "users" (
+  "id"  TEXT NOT NULL,
+  "email" TEXT NOT NULL,
+  "username" TEXT NOT NULL,
+  "password" TEXT NOT NULL,
+  "last_logged_in_at" TIMESTAMP DEFAULT NOW(),
+  "created_at" TIMESTAMP DEFAULT NOW(),
+  "updated_at" TIMESTAMP DEFAULT NOW(),
+
+  PRIMARY KEY ("id")
+);
+
 
 INSERT INTO acronyms(id, acronym, definition) VALUES('09a197f0-f7b6-44ff-bb93-1a9a81825e6c', '?', 'I don''t understand what you mean');
 INSERT INTO acronyms(id, acronym, definition) VALUES('cef23a5d-200f-4975-835d-f49d00da47ef', '?4U', 'I have a question for you');

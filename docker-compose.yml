@@ -31,6 +31,7 @@ services:
     environment:
       PG_HOST: postgres
       PG_USER: test
+      JWT_TOKEN_SECRET: sample-jwt-secret
       PG_PASSWORD: test
       PG_DATABASE: test
       REDIS_URL: redis://redis:6379

@@ -31,10 +31,6 @@ export class AcronymsController{
 
   }
 
-  // Todo:
-  // set heaaders and response helper
-  //Add Authorization token 
-
   public async find(req: Request, res: Response, next: NextFunction ): Promise<Response | void>{
 
     try{
@@ -42,12 +38,8 @@ export class AcronymsController{
       const queryparams = req.query;
       const [ acronyms, count] = await this.options.acronymsService.findAndCountAcronyms(queryparams);
 
-      return res.status( 200 ).json( {
-        error:   false,
-        code:    200,
-        message: 'Data gotten successfully',
-        data:    acronyms
-      } );
+      res.setHeader('X-Has-Next-Page', hasNextPage(queryparams, count).toString());
+      return res.status( 200 ).json( acronyms );
 
     } catch( error ){
 
@@ -64,17 +56,9 @@ export class AcronymsController{
       const { acronym } = req.params;
 
       const acronymData = await this.options.acronymsService.get( acronym );
-
-      if (!acronymData) {
-        return res.status(404).json({ error: 'Acronym not found' });
-      }
-
-      return res.status( 200 ).json( {
-        error:   false,
-        code:    200,
-        message: 'Data gotten successfully',
-        data:    acronymData
-      } );
+      if (!acronymData) return res.status(404).json({ error: 'Acronym not found' });
+      
+      return res.status(200).json( acronymData );
 
     } catch( error ){
 
@@ -92,12 +76,7 @@ export class AcronymsController{
       
       const acronymData = await this.options.acronymsService.getRandomCount(count);
 
-      return res.status(200).json({
-        error: false,
-        code: 200,
-        message: 'Data gotten successfully',
-        data: acronymData
-      });
+      return res.status(200).json( acronymData );
 
     } catch (error) {
 
@@ -115,12 +94,7 @@ export class AcronymsController{
 
       const acronymData = await this.options.acronymsService.create({ acronym, definition });
 
-      return res.status(200).json({
-        error: false,
-        code: 200,
-        message: 'Data gotten successfully',
-        data: acronymData
-      });
+      return res.status(200).json(acronymData);
 
     } catch (error) {
 
@@ -139,12 +113,7 @@ export class AcronymsController{
 
       const acronymData = await this.options.acronymsService.update( acronym, definition );
 
-      return res.status(200).json({
-        error: false,
-        code: 200,
-        message: 'Data gotten successfully',
-        data: acronymData
-      });
+      return res.status(200).json(acronymData);
 
     } catch (error) {
 
@@ -162,12 +131,7 @@ export class AcronymsController{
       
       const acronymData = await this.options.acronymsService.delete(acronym);
 
-      return res.status(200).json({
-        error: false,
-        code: 200,
-        message: 'Data gotten successfully',
-        data: acronymData
-      });
+      return res.status(200).json(acronymData);
 
     } catch (error) {
 
