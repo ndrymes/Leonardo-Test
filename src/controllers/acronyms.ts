@@ -16,12 +16,12 @@ export class AcronymsController{
   constructor( private readonly options: AcronymsControllerOptions ){
 
     this.router = Router();
-    this.router.get( '/acronyms', this.find.bind( this ) );
-    this.router.get( '/acronym/:acronym', this.get.bind( this ) );
-    this.router.get('/random/:count?', this.getRandomCount.bind(this));
+    this.router.get('/acronyms', this.find.bind( this ) );
+    this.router.get('/acronym/:acronym' , this.get.bind( this ) );
+    this.router.get('/random/:count?' , this.getRandomCount.bind(this));
     this.router.post('/acronym', this.create.bind(this));
-    this.router.put('/acronym/:acronym', this.update.bind(this));
-    this.router.delete('/acronym/:acronym', this.delete.bind(this));
+    this.router.put('/acronym/:acronym', handleTokenAuthorization(), this.update.bind(this));
+    this.router.delete('/acronym/:acronym', handleTokenAuthorization(), this.delete.bind(this));
 
   }
 

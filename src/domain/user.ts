@@ -1,4 +1,5 @@
-import { Column,
+import {
+  Column,
   Entity,
   PrimaryColumn,
   Index,
@@ -8,18 +9,26 @@ import { Column,
 } from 'typeorm';
 import { v4 as uuidv4 } from 'uuid';
 
-@Entity()
-export class Acronyms{
+@Entity( 'users' )
+export class User{
 
   @PrimaryColumn()
     id: string;
 
   @Column()
   @Index( { unique: true } )
-    acronym: string;
+    email: string;
 
   @Column()
-    definition: string;
+    username: string;
+
+  @Column()
+    password: string;
+
+    @Column( {
+      nullable: true
+    } )
+      last_logged_in_at: Date;
 
   @CreateDateColumn()
     created_at: Date;
