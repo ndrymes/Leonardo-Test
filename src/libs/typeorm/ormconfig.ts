@@ -1,7 +1,6 @@
 import { ConnectionOptions } from 'typeorm';
-
-// This import Will be needed when we introduce databases
-// import { entities } from 'src/libs/typeorm/entities';
+import { entities } from 'src/libs/typeorm/entities';
+import { migrations } from 'src/libs/typeorm/migrations';
 
 import {
   IS_PRODUCTION,
@@ -22,12 +21,14 @@ import {
 } from 'src/configs/app';
 
 export const OrmConfig = {
+  // synchronize: !IS_PRODUCTION, // npm run migration:generate -- <MigrationName>
   logging:     !IS_PRODUCTION && !IS_TEST,
-  // entities,
-  // synchronize: true,
+  entities,
+  migrations,
   subscribers: [],
   cli:         {
-    entitiesDir: 'src/libs/typeorm/entities'
+    entitiesDir:   'src/libs/typeorm/entities',
+    migrationsDir: 'src/libs/typeorm/migrations'
   },
 
   // Will be overwritten by env vars refer .env.example

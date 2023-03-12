@@ -16,7 +16,7 @@ export const IS_TEST = NODE_ENV === 'test';
 // Envvars for default database connection
 export const PG_DATABASE = process.env.PG_DATABASE || 'test';
 export const PG_HOST = process.env.PG_HOST || 'localhost';
-export const PG_PORT = Number( process.env.PG_PORT ) || 54320;
+export const PG_PORT = Number( process.env.PG_PORT ) || 5432;
 export const PG_USER = process.env.PG_USER || 'test';
 export const PG_PASSWORD = process.env.PG_PASSWORD || 'test';
 
