@@ -1,0 +1,23 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["email", "password"],
+  "properties": {
+    "email": {
+      "type": "string",
+      "pattern": "^\\S+@\\S+\\.\\S+$",
+      "errorMessage": {
+        "pattern": "not a valid email format"
+      },
+      "description": "its a email the user intends to register with",
+      "examples": [ "foobar@example.com" ]
+    },
+    "password": {
+      "type": "string",
+      "description": "its a secret key for authentication that users must supply",
+      "examples": [
+        "password"
+      ]
+    }
+  }
+}
