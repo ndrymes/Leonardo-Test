@@ -15,6 +15,6 @@ export class init1642668308364 implements MigrationInterface {
 
     public async down(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.query(`DROP TABLE "acronyms"`);
-        // await queryRunner.query(`DROP TABLE "users"`);
+        await queryRunner.query(`DROP TABLE "users"`);
     }
 }

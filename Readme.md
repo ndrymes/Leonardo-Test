@@ -35,7 +35,7 @@ docker-compose logs -f
 
 ```bash
 # the command below will open a shell session inside our app container
-docker exec -it Leornadotest sh
+docker exec -it Leonardotest sh
 # this is for executing CLI in dev env, for i.e. DB migration command like below
 npm run migration:run
 ```
@@ -141,6 +141,11 @@ npm run migration:create -- -n <MigrationName>
 ```
 
 I had a lot of fun building this but there are some improvements I can still make:
+
+
+## API
+
+There are multiple endpoints that can be used to retrieve acronyms. Please find below a POSTMAN documentation for easy guide <a href="https://documenter.getpostman.com/view/7667873/2s93JtS4MD">https://documenter.getpostman.com/view/7667873/2s93JtS4MD</a>.
 
 # Todo
 
