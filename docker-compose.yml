@@ -22,7 +22,7 @@ services:
       target: "dev"
     depends_on:
       - postgres
-    container_name: 'Leornadotest'
+    container_name: 'Leonardotest'
     ports:
       - "3000:3000"
     volumes:
